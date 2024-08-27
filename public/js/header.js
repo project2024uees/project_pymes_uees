@@ -1,5 +1,24 @@
-document.addEventListener('DOMContentLoaded', function() {
+fetch('header.html')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al cargar el header');
+        }
+        return response.text();
+    })
+    .then(data => {
+        // Insertar el header en el DOM
+        document.getElementById('header').innerHTML = data;
+
+        // Después de que el header se ha cargado e insertado en el DOM, ejecutar el script del menú
+        cargarMenu();
+    })
+    .catch(error => {
+        console.error('Error al cargar el header:', error);
+    });
+
+function cargarMenu() {
     const menu = document.getElementById('menu');
+    menu.innerHTML = ''; // Limpia el menú antes de llenarlo de nuevo
 
     function createMenuItem(item) {
         if (item.submenu && item.submenu.length > 0) {
@@ -34,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    fetch('../js/menu.json')
+    fetch('../js/menu.json?v=' + new Date().getTime())
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error al leer el archivo JSON');
@@ -42,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            //alert('JSON cargado exitosamente');
             console.log('Datos del menú:', data);
             data.forEach(item => {
                 const menuItem = createMenuItem(item);
@@ -50,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => {
-            //alert('Error al cargar el menú');
+            alert('Error al cargar el menú');
             console.error('Error cargando el menú:', error);
         });
-});
+}

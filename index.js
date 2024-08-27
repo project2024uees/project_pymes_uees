@@ -20,9 +20,11 @@ mongoose.connect(mongoUri, {
 .then(() => console.log('Conectado a MongoDB'))
 .catch(err => console.error('Error al conectar a MongoDB:', err));
 
+
+
 // Configurar una ruta de ejemplo
 app.get('/', (req, res) => {
-    res.send('¡Hola Mundo!');
+    res.send('Inicio de app');
 });
 
 // Configurar una ruta de ejemplo (opcional)

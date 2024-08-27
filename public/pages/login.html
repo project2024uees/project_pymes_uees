@@ -1,27 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="../css/output.css" rel="stylesheet">
 </head>
-<body class="bg-white h-screen flex flex-col">
 
+<body class="bg-white h-screen flex flex-col">
     <!-- Header -->
-    <header class="bg-red-600 shadow-md">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="../images/logo.png" alt="Logo" class="h-8 w-8">
-                <nav id="menu" class="ml-10 space-x-4">
-                    <!-- Menú dinámico se generará aquí -->
-                </nav>
-            </div>
-            <div>
-                <a href="/pages/login.html" class="text-white hover:text-red-200">Iniciar Sesión</a>
-            </div>
-        </div>
-    </header>
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
 
     <!-- Contenido principal -->
     <div class="flex-grow flex w-full h-full">
@@ -38,19 +28,26 @@
                             <label class="block text-red-600 text-sm font-bold mb-2" for="username">
                                 Usuario
                             </label>
-                            <input class="shadow appearance-none border border-red-300 rounded w-full py-3 px-4 text-red-800 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500" id="username" type="text" placeholder="Ingresa tu usuario">
+                            <input
+                                class="shadow appearance-none border border-red-300 rounded w-full py-3 px-4 text-red-800 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                id="username" type="text" placeholder="Ingresa tu usuario">
                         </div>
                         <div class="mb-8">
                             <label class="block text-red-600 text-sm font-bold mb-2" for="password">
                                 Contraseña
                             </label>
-                            <input class="shadow appearance-none border border-red-300 rounded w-full py-3 px-4 text-red-800 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500" id="password" type="password" placeholder="********">
+                            <input
+                                class="shadow appearance-none border border-red-300 rounded w-full py-3 px-4 text-red-800 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500"
+                                id="password" type="password" placeholder="********">
                         </div>
                         <div class="flex items-center justify-between">
-                            <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline" type="submit">
+                            <button
+                                class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
+                                type="submit">
                                 Iniciar Sesión
                             </button>
-                            <a class="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800" href="#">
+                            <a class="inline-block align-baseline font-bold text-sm text-red-500 hover:text-red-800"
+                                href="#">
                                 ¿Olvidaste tu contraseña?
                             </a>
                         </div>
@@ -61,20 +58,18 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-red-600 py-4">
-        <div class="container mx-auto flex justify-between items-center text-white">
-            <div class="flex items-center space-x-4">
-                <p>Síguenos en:</p>
-                <a href="#"><img src="../images/facebook-icon.png" alt="Facebook" class="h-6 w-6"></a>
-                <a href="#"><img src="../images/twitter-icon.png" alt="Twitter" class="h-6 w-6"></a>
-                <a href="#"><img src="../images/instagram-icon.png" alt="Instagram" class="h-6 w-6"></a>
-            </div>
-            <p>&copy; 2024 Mi Aplicación. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
 
     <!-- JavaScript -->
     <script src="../js/header.js"></script>
-    
+
 </body>
+
 </html>

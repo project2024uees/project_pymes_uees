@@ -1,0 +1,63 @@
+[
+    {
+        "name": "Inicio",
+        "url": "/",
+        "submenu": []
+    },
+    {
+        "name": "Productos",
+        "submenu": [
+            {
+                "name": "Electrónica",
+                "url": "/productos/electronica",
+                "submenu": [
+                    {
+                        "name": "Teléfonos",
+                        "url": "/productos/electronica/telefonos"
+                    },
+                    {
+                        "name": "Computadoras",
+                        "url": "/productos/electronica/computadoras"
+                    }
+                ]
+            },
+            {
+                "name": "Hogar",
+                "url": "/productos/hogar",
+                "submenu": [
+                    {
+                        "name": "Muebles",
+                        "url": "/productos/hogar/muebles"
+                    },
+                    {
+                        "name": "Decoración",
+                        "url": "/productos/hogar/decoracion"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Servicios",
+        "submenu": [
+            {
+                "name": "Consultoría",
+                "url": "/servicios/consultoria"
+            },
+            {
+                "name": "Soporte Técnico",
+                "url": "/servicios/soporte-tecnico"
+            }
+        ]
+    },
+    {
+        "name": "Nosotros",
+        "url": "/nosotros",
+        "submenu": []
+    },
+    {
+        "name": "Contáctenos",
+        "url": "/contactenos",
+        "submenu": []
+    }
+]

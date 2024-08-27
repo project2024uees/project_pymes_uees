@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Contenedor para el Header -->
+    <header id="header" class="bg-white shadow-md"></header>
+
+    <!-- Content -->
+    <main class="flex-grow container mx-auto px-6 py-4">
+        <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Bienvenido</h1>
+                <p class="text-gray-600">Por favor, inicia sesión para continuar</p>
+            </div>
+            <form action="#" method="POST">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Usuario
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Ingresa tu usuario">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Contraseña
+                    </label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="********">
+                </div>
+                <div class="flex items-center justify-between">
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Iniciar Sesión
+                    </button>
+                    <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                        ¿Olvidaste tu contraseña?
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Contenedor para el Footer -->
+    <footer id="footer" class="bg-gray-800 py-6"></footer>
+
+    <script src="../js/header.js"></script>
+    <script>
+        // Cargar dinámicamente el header y el footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../pages/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                    // Luego de cargar el header, inicializar el menú dinámico
+                    const script = document.createElement('script');
+                    script.src = '../js/header.js';
+                    document.head.appendChild(script);
+                });
+
+            fetch('/pages/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>

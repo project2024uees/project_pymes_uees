@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full">
+        <!-- Contenido principal -->
+        <div class="container mx-auto p-6">
+            <h1 class="text-3xl font-bold mb-6">Administrar Categorías de Producto</h1>
+
+            <!-- Formulario para agregar/editar categorías -->
+            <form id="category-form" class="mb-6">
+                <div class="mb-4">
+                    <label for="categoryId" class="block text-gray-700 text-sm font-bold mb-2">ID de Categoría</label>
+                    <input type="text" id="categoryId" name="categoryId"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Ej: C001" required>
+                </div>
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
+                    <input type="text" id="name" name="name"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Ej: Electrónica" required>
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+                    <textarea id="description" name="description"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Descripción de la categoría" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Notas</label>
+                    <textarea id="notes" name="notes"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Notas adicionales"></textarea>
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit"
+                        class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Guardar
+                        Categoría</button>
+                    <button type="reset"
+                        class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Limpiar
+                        Formulario</button>
+                </div>
+            </form>
+
+            <!-- Lista de categorías -->
+            <div id="categories-list" class="bg-white shadow-md rounded-lg p-6">
+                <h2 class="text-2xl font-bold mb-4">Lista de Categorías</h2>
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2">ID</th>
+                            <th class="py-2">Nombre</th>
+                            <th class="py-2">Descripción</th>
+                            <th class="py-2">Notas</th>
+                            <th class="py-2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categories-table">
+                        <!-- Aquí se insertarán las filas de la tabla dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.getElementById('category-form');
+                const categoriesTable = document.getElementById('categories-table');
+
+                // Función para renderizar la lista de categorías
+                function renderCategories(categories) {
+                    categoriesTable.innerHTML = ''; // Limpiar la tabla
+                    categories.forEach(category => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                <td class="py-2">${category.categoryId}</td>
+                <td class="py-2">${category.name}</td>
+                <td class="py-2">${category.description}</td>
+                <td class="py-2">${category.notes}</td>
+                <td class="py-2">
+                    <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded edit-btn" data-id="${category.categoryId}">Editar</button>
+                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded delete-btn" data-id="${category.categoryId}">Eliminar</button>
+                </td>
+            `;
+                        categoriesTable.appendChild(row);
+                    });
+
+                    // Agregar eventos de edición y eliminación
+                    document.querySelectorAll('.edit-btn').forEach(button => {
+                        button.addEventListener('click', function () {
+                            // Aquí puedes agregar lógica para editar la categoría
+                            const categoryId = this.dataset.id;
+                            alert('Editar categoría: ' + categoryId);
+                            // Cargar los datos de la categoría en el formulario para edición...
+                        });
+                    });
+
+                    document.querySelectorAll('.delete-btn').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const categoryId = this.dataset.id;
+                            alert('Eliminar categoría: ' + categoryId);
+                            // Aquí puedes agregar lógica para eliminar la categoría...
+                        });
+                    });
+                }
+
+                // Cargar categorías desde el servidor (aquí se puede hacer un fetch a la base de datos)
+                const categories = [
+                    {
+                        "categoryId": "C001",
+                        "name": "Electrónica",
+                        "description": "Dispositivos electrónicos y gadgets",
+                        "notes": "Notas adicionales sobre la categoría"
+                    },
+                    // Puedes agregar más categorías de ejemplo aquí
+                ];
+                renderCategories(categories);
+
+                // Manejar el envío del formulario
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const newCategory = {
+                        categoryId: form.categoryId.value,
+                        name: form.name.value,
+                        description: form.description.value,
+                        notes: form.notes.value
+                    };
+                    // Aquí podrías agregar lógica para enviar los datos al servidor y actualizar la lista
+                    categories.push(newCategory);
+                    renderCategories(categories);
+                    form.reset(); // Limpiar el formulario
+                });
+            });
+        </script>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+</body>
+
+</html>

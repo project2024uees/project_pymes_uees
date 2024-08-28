@@ -16,7 +16,8 @@
     <div id="content" class="flex-grow flex w-full h-full">
         <!--SOLO AQUI CREAR EL COMPONENTE NO TOCAR EL RESTO-->
         <div class="container mx-auto p-6">
-            <h1 class="text-3xl font-bold mb-6">Ingreso de Producto</h1>
+            <h1 class="text-3x1 font-bold mb-6">Ingreso de Producto</h1>
+            <!-- Formulario -->
 
             <!-- Botones superiores -->
             <div class="flex items-center justify-start mb-6 space-x-4">
@@ -61,7 +62,6 @@
                 </ul>
             </div>
 
-            <!-- Formulario -->
             <form id="product-form" class="space-y-6">
                 <!-- General Tab -->
                 <div id="general" class="tab-content">
@@ -129,21 +129,21 @@
                                 Unidad</label>
                             <input type="text" id="unitOfMeasurePurchaseId" name="unitOfMeasurePurchaseId"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="1">
                         </div>
                         <div>
                             <label for="unitOfMeasurePurchaseName"
                                 class="block text-gray-700 text-sm font-bold mb-2">Nombre Unidad</label>
                             <input type="text" id="unitOfMeasurePurchaseName" name="unitOfMeasurePurchaseName"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="CAJA">
                         </div>
                         <div>
                             <label for="unitOfMeasurePurchaseSymbol"
                                 class="block text-gray-700 text-sm font-bold mb-2">Símbolo</label>
                             <input type="text" id="unitOfMeasurePurchaseSymbol" name="unitOfMeasurePurchaseSymbol"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="CJ">
                         </div>
                         <div>
                             <label for="unitOfMeasurePurchaseConversionFactor"
@@ -151,7 +151,7 @@
                             <input type="number" step="0.01" id="unitOfMeasurePurchaseConversionFactor"
                                 name="unitOfMeasurePurchaseConversionFactor"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="1">
                         </div>
                     </div>
                 </div>
@@ -164,21 +164,21 @@
                                 Unidad</label>
                             <input type="text" id="unitOfMeasureSaleId" name="unitOfMeasureSaleId"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="1">
                         </div>
                         <div>
                             <label for="unitOfMeasureSaleName" class="block text-gray-700 text-sm font-bold mb-2">Nombre
                                 Unidad</label>
                             <input type="text" id="unitOfMeasureSaleName" name="unitOfMeasureSaleName"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="UNIDAD">
                         </div>
                         <div>
                             <label for="unitOfMeasureSaleSymbol"
                                 class="block text-gray-700 text-sm font-bold mb-2">Símbolo</label>
                             <input type="text" id="unitOfMeasureSaleSymbol" name="unitOfMeasureSaleSymbol"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="UN">
                         </div>
                         <div>
                             <label for="unitOfMeasureSaleConversionFactor"
@@ -186,7 +186,7 @@
                             <input type="number" step="0.01" id="unitOfMeasureSaleConversionFactor"
                                 name="unitOfMeasureSaleConversionFactor"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="1">
                         </div>
                     </div>
                 </div>
@@ -199,21 +199,21 @@
                                 Compra</label>
                             <input type="number" step="0.01" id="pricePurchase" name="pricePurchase"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="0">
                         </div>
                         <div>
                             <label for="priceSale" class="block text-gray-700 text-sm font-bold mb-2">Precio de
                                 Venta</label>
                             <input type="number" step="0.01" id="priceSale" name="priceSale"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="0">
                         </div>
                         <div>
                             <label for="inventoryQuantity" class="block text-gray-700 text-sm font-bold mb-2">Cantidad
                                 en Inventario</label>
                             <input type="number" step="1" id="inventoryQuantity" name="inventoryQuantity"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                required>
+                                value="0">
                         </div>
                     </div>
 
@@ -289,6 +289,17 @@
 
     <!-- Script para manejar productos -->
     <script src="../js/productos.js"></script>
+
+    <script src="../js/productos.js"></script>
+
+    <script>
+        document.getElementById('saveProduct').addEventListener('click', guardarProducto);
+        /*document.getElementById('searchProduct').addEventListener('click', function () {
+            window.location.href = '/pages/productos.html';
+        });*/
+        document.querySelector('button[type="reset"]').addEventListener('click', limpiarFormulario);
+    </script>
+
 </body>
 
 </html>

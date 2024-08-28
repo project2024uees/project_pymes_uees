@@ -1,9 +1,9 @@
-const express = require('express');
+/*const express = require('express');
 const router = express.Router();
 const Producto = require('../models/Productos');  // Importamos el modelo de productos
-
+*/
 // Crear un nuevo producto
-router.post('/', async (req, res) => {
+/*router.post('/', async (req, res) => {
     try {
         const nuevoProducto = new Producto(req.body);
         const productoGuardado = await nuevoProducto.save();
@@ -11,7 +11,21 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
+});*/
+
+/*
+router.post('/', async (req, res) => {
+    try {
+        const newProducto = new Producto(req.body);
+        await newProducto.save();
+        res.status(201).json(newProducto);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
 });
+
+
+
 
 // Obtener todos los productos
 router.get('/', async (req, res) => {
@@ -57,3 +71,4 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+*/

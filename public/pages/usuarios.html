@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full">
+        <div class="container mx-auto p-6">
+            <h1 class="text-3x1 font-bold mb-6">Ingreso de Usuario</h1>
+
+            <!-- Botones superiores -->
+            <div class="flex items-center justify-start mb-6 space-x-4">
+                <button id="saveUser" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Guardar</button>
+                <button type="reset" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Limpiar</button>
+                <button id="searchUser" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Buscar Usuario</button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="mb-6">
+                <ul id="tabs" class="flex border-b">
+                    <li class="-mb-px mr-1">
+                        <a href="#general" class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold">General</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#roles" class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Roles</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#other" class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Otros</a>
+                    </li>
+                </ul>
+            </div>
+
+            <form id="user-form" class="space-y-6">
+                <!-- General Tab -->
+                <div id="general" class="tab-content">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="userId" class="block text-gray-700 text-sm font-bold mb-2">ID de Usuario</label>
+                            <input type="text" id="userId" name="userId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div>
+                            <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Nombre de Usuario</label>
+                            <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono</label>
+                            <input type="text" id="phone" name="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" >
+                        </div>
+                        <div>
+                            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña</label>
+                            <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        </div>
+                        <div>
+                            <label for="userStatus" class="block text-gray-700 text-sm font-bold mb-2">Estado del Usuario</label>
+                            <select id="userStatus" name="userStatus" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                                <option value="active">Activo</option>
+                                <option value="inactive">Inactivo</option>
+                                <option value="banned">Bloqueado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Roles Tab -->
+                <div id="roles" class="tab-content hidden">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="roleId" class="block text-gray-700 text-sm font-bold mb-2">ID de Rol</label>
+                            <input type="text" id="roleId" name="roleId" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="roleName" class="block text-gray-700 text-sm font-bold mb-2">Nombre de Rol</label>
+                            <input type="text" id="roleName" name="roleName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="roleDescription" class="block text-gray-700 text-sm font-bold mb-2">Descripción de Rol</label>
+                            <textarea id="roleDescription" name="roleDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Tab -->
+                <div id="other" class="tab-content hidden">
+                    <div>
+                        <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Notas</label>
+                        <textarea id="notes" name="notes" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+    <script src="../js/usuarios.js"></script>
+</body>
+
+</html>

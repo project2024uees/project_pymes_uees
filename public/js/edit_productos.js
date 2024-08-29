@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadProduct();
 });
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const tabs = document.querySelectorAll('#tabs a');
     const tabContents = document.querySelectorAll('.tab-content');

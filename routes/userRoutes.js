@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Producto = require('../models/Productos');  // Importamos el modelo de productos
+const Usuario = require('../models/Usuarios'); 
 
 router.post('/newProduct', async (req, res) => {
     try {
@@ -63,6 +64,23 @@ router.put('/updateProduct/:productId', async (req, res) => {
         res.status(500).json({ error: 'Error actualizando producto' });
     }
 });
+
+// Crear un nuevo usuario
+router.post('/createUser', async (req, res) => {
+    const newUser = req.body;
+    try {
+        // Generar hash de la contraseña (puedes usar bcrypt o cualquier otra librería)
+        //newUser.password = await bcrypt.hash(newUser.password, 10);
+
+        const usuario = new Usuario(newUser);
+        await usuario.save();
+        res.status(201).json({ message: 'Usuario creado con éxito' });
+    } catch (error) {
+        // console.error('Error creando usuario:', error);
+        res.status(500).json({ error: 'Error creando usuario' });
+    }
+});
+
 
 
 

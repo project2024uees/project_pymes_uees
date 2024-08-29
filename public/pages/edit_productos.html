@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full">
+        <!--SOLO AQUI CREAR EL COMPONENTE NO TOCAR EL RESTO-->
+        <div class="container mx-auto p-6">
+            <h1 class="text-3x1 font-bold mb-6">Editar Producto</h1>
+            <!-- Formulario -->
+
+            <!-- Botones superiores -->
+            <div class="flex items-center justify-start mb-6 space-x-4">
+                <button id="saveProduct"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Guardar</button>
+    
+                <button id="searchProduct"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Buscar Producto
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="mb-6">
+                <ul id="tabs" class="flex border-b">
+                    <li class="-mb-px mr-1">
+                        <a href="#general"
+                            class="bg-white inline-block border-l border-t border-r rounded-t py-2 px-4 text-blue-700 font-semibold">General</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#category"
+                            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Categoría</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#measurements1"
+                            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">UMP</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#measurements2"
+                            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">UMV</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#pricing"
+                            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Precios
+                            e Inventario</a>
+                    </li>
+                    <li class="mr-1">
+                        <a href="#other"
+                            class="bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Otros</a>
+                    </li>
+                </ul>
+            </div>
+
+            <form id="product-form" class="space-y-6">
+                <!-- General Tab -->
+                <div id="general" class="tab-content">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="productId" class="block text-gray-700 text-sm font-bold mb-2">ID de
+                                Producto</label>
+                            <input type="text" id="productId" name="productId"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                        </div>
+                        <div>
+                            <label for="sku" class="block text-gray-700 text-sm font-bold mb-2">SKU</label>
+                            <input type="text" id="sku" name="sku"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                        </div>
+                        <div>
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre del
+                                Producto</label>
+                            <input type="text" id="name" name="name"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
+                        <textarea id="description" name="description"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+                </div>
+
+                <!-- Category Tab -->
+                <div id="category" class="tab-content hidden">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="categoryId" class="block text-gray-700 text-sm font-bold mb-2">ID de
+                                Categoría</label>
+                            <input type="text" id="categoryId" name="categoryId"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                        </div>
+                        <div>
+                            <label for="categoryName" class="block text-gray-700 text-sm font-bold mb-2">Nombre de la
+                                Categoría</label>
+                            <input type="text" id="categoryName" name="categoryName"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                        </div>
+                        <div>
+                            <label for="categoryDescription"
+                                class="block text-gray-700 text-sm font-bold mb-2">Descripción de la Categoría</label>
+                            <textarea id="categoryDescription" name="categoryDescription"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Measurements Tab UOMP -->
+                <div id="measurements1" class="tab-content hidden">
+                    <div class="grid grid-cols-4 gap-4">
+                        <div>
+                            <label for="unitOfMeasurePurchaseId" class="block text-gray-700 text-sm font-bold mb-2">ID
+                                Unidad</label>
+                            <input type="text" id="unitOfMeasurePurchaseId" name="unitOfMeasurePurchaseId"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="1">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasurePurchaseName"
+                                class="block text-gray-700 text-sm font-bold mb-2">Nombre Unidad</label>
+                            <input type="text" id="unitOfMeasurePurchaseName" name="unitOfMeasurePurchaseName"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="CAJA">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasurePurchaseSymbol"
+                                class="block text-gray-700 text-sm font-bold mb-2">Símbolo</label>
+                            <input type="text" id="unitOfMeasurePurchaseSymbol" name="unitOfMeasurePurchaseSymbol"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="CJ">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasurePurchaseConversionFactor"
+                                class="block text-gray-700 text-sm font-bold mb-2">Factor de Conversión</label>
+                            <input type="number" step="0.01" id="unitOfMeasurePurchaseConversionFactor"
+                                name="unitOfMeasurePurchaseConversionFactor"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Measurements Tab UOMV -->
+                <div id="measurements2" class="tab-content hidden">
+                    <div class="grid grid-cols-4 gap-4">
+                        <div>
+                            <label for="unitOfMeasureSaleId" class="block text-gray-700 text-sm font-bold mb-2">ID
+                                Unidad</label>
+                            <input type="text" id="unitOfMeasureSaleId" name="unitOfMeasureSaleId"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="1">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasureSaleName" class="block text-gray-700 text-sm font-bold mb-2">Nombre
+                                Unidad</label>
+                            <input type="text" id="unitOfMeasureSaleName" name="unitOfMeasureSaleName"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="UNIDAD">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasureSaleSymbol"
+                                class="block text-gray-700 text-sm font-bold mb-2">Símbolo</label>
+                            <input type="text" id="unitOfMeasureSaleSymbol" name="unitOfMeasureSaleSymbol"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="UN">
+                        </div>
+                        <div>
+                            <label for="unitOfMeasureSaleConversionFactor"
+                                class="block text-gray-700 text-sm font-bold mb-2">Factor de Conversión</label>
+                            <input type="number" step="0.01" id="unitOfMeasureSaleConversionFactor"
+                                name="unitOfMeasureSaleConversionFactor"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing and Inventory Tab -->
+                <div id="pricing" class="tab-content hidden">
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <label for="pricePurchase" class="block text-gray-700 text-sm font-bold mb-2">Precio de
+                                Compra</label>
+                            <input type="number" step="0.01" id="pricePurchase" name="pricePurchase"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="0">
+                        </div>
+                        <div>
+                            <label for="priceSale" class="block text-gray-700 text-sm font-bold mb-2">Precio de
+                                Venta</label>
+                            <input type="number" step="0.01" id="priceSale" name="priceSale"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="0">
+                        </div>
+                        <div>
+                            <label for="inventoryQuantity" class="block text-gray-700 text-sm font-bold mb-2">Cantidad
+                                en Inventario</label>
+                            <input type="number" step="1" id="inventoryQuantity" name="inventoryQuantity"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                value="0">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="reorderPoint" class="block text-gray-700 text-sm font-bold mb-2">Punto de
+                                Reorden</label>
+                            <input type="number" step="1" id="reorderPoint" name="reorderPoint"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="averageWeightedCost" class="block text-gray-700 text-sm font-bold mb-2">Costo
+                                Promedio Ponderado</label>
+                            <input type="number" step="0.01" id="averageWeightedCost" name="averageWeightedCost"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Tab -->
+                <div id="other" class="tab-content hidden">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="lastMovementDate" class="block text-gray-700 text-sm font-bold mb-2">Fecha del
+                                Último Movimiento</label>
+                            <input type="date" id="lastMovementDate" name="lastMovementDate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="productStatus" class="block text-gray-700 text-sm font-bold mb-2">Estado del
+                                Producto</label>
+                            <select id="productStatus" name="productStatus"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                required>
+                                <option value="active">Activo</option>
+                                <option value="inactive">Inactivo</option>
+                                <option value="discontinued">Descontinuado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="productImage" class="block text-gray-700 text-sm font-bold mb-2">Imagen del
+                            Producto</label>
+                        <input type="text" id="productImage" name="productImage"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+
+                    <div>
+                        <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Notas</label>
+                        <textarea id="notes" name="notes"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+
+
+    <script src="../js/edit_productos.js"></script>
+
+    <script>
+        //document.getElementById('saveProduct').addEventListener('click', guardarProducto);
+        document.getElementById('searchProduct').addEventListener('click', function () {
+            window.location.href = '/pages/view_productos.html';
+        });
+        //document.querySelector('button[type="reset"]').addEventListener('click', limpiarFormulario);
+    </script>
+
+</body>
+
+</html>

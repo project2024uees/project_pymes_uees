@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para Editar Producto
     window.editProduct = function (productId) {
-        window.location.href = `/pages/productos.html?productId=${productId}`;
+        window.location.href = `/pages/edit_productos.html?productId=${productId}`;
     }
 
     // Función para Borrar Producto

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctenos - EcuPymePlan</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full items-center justify-center">
+        <div class="p-8 max-w-xl w-full">
+            <h1 class="text-4xl font-bold text-gray-800 mb-6 text-center">Contáctenos</h1>
+            <form action="mailto:admin@miempresa.com" method="POST" enctype="text/plain">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nombre</label>
+                    <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500" id="name" type="text" placeholder="Tu nombre">
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Correo Electrónico</label>
+                    <input class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500" id="email" type="email" placeholder="Tu correo electrónico">
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Mensaje</label>
+                    <textarea class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-red-500" id="message" rows="5" placeholder="Escribe tu mensaje"></textarea>
+                </div>
+                <div class="flex justify-center">
+                    <button class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+</body>
+
+</html>

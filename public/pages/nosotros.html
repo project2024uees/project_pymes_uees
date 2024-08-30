@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - EcuPymePlan</title>
+    <link href="../css/output.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full items-center justify-center">
+        <div class="text-center p-8 max-w-3xl">
+            <h1 class="text-4xl font-bold text-gray-800 mb-6">Sobre Nosotros</h1>
+            <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                Somos un equipo de emprendedores con amplia experiencia en <span class="font-semibold">Machine Learning</span>, 
+                <span class="font-semibold">Inteligencia de Negocios</span>, <span class="font-semibold">Logística</span> y <span class="font-semibold">Planificación</span>.
+            </p>
+            <p class="text-lg text-gray-700 leading-relaxed">
+                Nuestra misión es crear soluciones que permitan a las PYMEs mejorar su eficiencia y maximizar sus ganancias. Por ello, hemos desarrollado un sistema pensado específicamente para ayudar a las pequeñas y medianas empresas a optimizar sus operaciones y a ser más competitivas en el mercado.
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+</body>
+
+</html>

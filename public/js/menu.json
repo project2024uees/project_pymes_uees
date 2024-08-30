@@ -1,5 +1,9 @@
 [
     {
+        "name": "Dashboard",
+        "url": "/pages/main.html"
+    },
+    {
         "name": "Productos",
         "submenu": [
             {

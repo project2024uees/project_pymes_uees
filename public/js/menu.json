@@ -1,63 +1,32 @@
 [
     {
-        "name": "Inicio",
-        "url": "/",
-        "submenu": []
-    },
-    {
         "name": "Productos",
         "submenu": [
             {
-                "name": "Electrónica",
-                "url": "/productos/electronica",
-                "submenu": [
-                    {
-                        "name": "Teléfonos",
-                        "url": "/productos/electronica/telefonos"
-                    },
-                    {
-                        "name": "Computadoras",
-                        "url": "/productos/electronica/computadoras"
-                    }
-                ]
+                "name": "Crear Producto",
+                "url": "/pages/productos.html"
             },
             {
-                "name": "Hogar",
-                "url": "/productos/hogar",
-                "submenu": [
-                    {
-                        "name": "Muebles",
-                        "url": "/productos/hogar/muebles"
-                    },
-                    {
-                        "name": "Decoración",
-                        "url": "/productos/hogar/decoracion"
-                    }
-                ]
+                "name": "Buscar Producto",
+                "url": "/pages/view_productos.html"
             }
         ]
     },
     {
-        "name": "Servicios",
+        "name": "Administración",
         "submenu": [
             {
-                "name": "Consultoría",
-                "url": "/servicios/consultoria"
-            },
-            {
-                "name": "Soporte Técnico",
-                "url": "/servicios/soporte-tecnico"
+                "name": "Crear Usuarios",
+                "url": "/pages/usuarios.html"
             }
         ]
     },
     {
         "name": "Nosotros",
-        "url": "/nosotros",
-        "submenu": []
+        "url": "/pages/nosotros.html"
     },
     {
         "name": "Contáctenos",
-        "url": "/contactenos",
-        "submenu": []
+        "url": "/pages/contactenos.html"
     }
 ]

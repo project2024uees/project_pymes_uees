@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const mongoose = require('mongoose');
 const categoryRoutes = require('./routes/categoryRoutes');
 
@@ -17,3 +17,4 @@ app.use(express.static('public'));
 // Iniciar el servidor
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Servidor iniciado en http://localhost:${port}`));
+*/

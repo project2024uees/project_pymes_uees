@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcuPymePlan</title>
+    <link href="../css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./node_modules/apexcharts/dist/apexcharts.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full items-center justify-center">
+        <!--SOLO AQUI CREAR EL COMPONENTE NO TOCAR EL RESTO-->
+
+        <div class="dashboard bg-red-50 shadow-lg rounded-lg px-10 py-10">
+
+            <div class="card card-1">
+                <p class="value_kpi">425</p>
+                <canvas id="smallChart1" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">Items activos</h2>
+            </div>
+            <div class="card card-2">
+                <p class="value_kpi">76</p>
+                <canvas id="smallChart2" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">Items inactivos</h2>
+            </div>
+            <div class="card card-3">
+                <p class="value_kpi">95 %</p>
+                <canvas id="smallChart3" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Previsión de Stock</h2>
+            </div>
+            <div class="card card-4">
+                <p class="value_kpi">98 %</p>
+                <canvas id="smallChart4" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Previsión de Ventas</h2>
+            </div>
+            <div class="card card-5">
+                <p class="value_kpi">25 %</p>
+                <canvas id="smallChart5" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Crecimiento en Ventas</h2>
+            </div>
+
+            <div class="card card-6">
+                <p class="value_kpi">10 %</p>
+                <canvas id="smallChart6" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Over Stock</h2>
+            </div>
+
+            <div class="card card-7">
+                <h2 class="text-2xl font-bold mb-4">Tabla de Indicadores</h2>
+                <div class="table-container">
+                <table class="table-auto">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Descripción</th>
+                            <th>Categoría</th>
+                            <th>Proveedor</th>
+                            <th>Stock Qty</th>
+                            <th>Pred. Stock Qty</th>
+                            <th>Stock USD</th>
+                            <th>Venta Qty</th>
+                            <th>Venta USD</th>
+                            <th>Rotación</th>
+                            <th>Precisión Stock</th>
+                            <th>Eficiencia</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SKU12345</td>
+                            <td>Producto A</td>
+                            <td>Categoría A</td>
+                            <td>Proveedor X</td>
+                            <td>500</td>
+                            <td>480</td>
+                            <td>$5,000</td>
+                            <td>200</td>
+                            <td>$2,000</td>
+                            <td>0.4</td>
+                            <td>4.2%</td>
+                            <td><span class="eficiencia-media">⚠️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12346</td>
+                            <td>Producto B</td>
+                            <td>Categoría B</td>
+                            <td>Proveedor Y</td>
+                            <td>400</td>
+                            <td>420</td>
+                            <td>$4,000</td>
+                            <td>180</td>
+                            <td>$1,800</td>
+                            <td>0.45</td>
+                            <td>-4.8%</td>
+                            <td><span class="eficiencia-media">⚠️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12347</td>
+                            <td>Producto C</td>
+                            <td>Categoría C</td>
+                            <td>Proveedor Z</td>
+                            <td>600</td>
+                            <td>590</td>
+                            <td>$6,000</td>
+                            <td>240</td>
+                            <td>$2,400</td>
+                            <td>0.4</td>
+                            <td>1.7%</td>
+                            <td><span class="eficiencia-media">⚠️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12348</td>
+                            <td>Producto D</td>
+                            <td>Categoría D</td>
+                            <td>Proveedor W</td>
+                            <td>300</td>
+                            <td>310</td>
+                            <td>$3,000</td>
+                            <td>150</td>
+                            <td>$1,500</td>
+                            <td>0.5</td>
+                            <td>-3.2%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12349</td>
+                            <td>Producto E</td>
+                            <td>Categoría E</td>
+                            <td>Proveedor V</td>
+                            <td>700</td>
+                            <td>690</td>
+                            <td>$7,000</td>
+                            <td>350</td>
+                            <td>$3,500</td>
+                            <td>0.5</td>
+                            <td>1.4%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12350</td>
+                            <td>Producto F</td>
+                            <td>Categoría F</td>
+                            <td>Proveedor U</td>
+                            <td>800</td>
+                            <td>810</td>
+                            <td>$8,000</td>
+                            <td>400</td>
+                            <td>$4,000</td>
+                            <td>0.5</td>
+                            <td>-1.2%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12351</td>
+                            <td>Producto G</td>
+                            <td>Categoría G</td>
+                            <td>Proveedor T</td>
+                            <td>900</td>
+                            <td>890</td>
+                            <td>$9,000</td>
+                            <td>450</td>
+                            <td>$4,500</td>
+                            <td>0.5</td>
+                            <td>1.1%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12352</td>
+                            <td>Producto H</td>
+                            <td>Categoría H</td>
+                            <td>Proveedor S</td>
+                            <td>1000</td>
+                            <td>980</td>
+                            <td>$10,000</td>
+                            <td>500</td>
+                            <td>$5,000</td>
+                            <td>0.5</td>
+                            <td>2.0%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12353</td>
+                            <td>Producto I</td>
+                            <td>Categoría I</td>
+                            <td>Proveedor R</td>
+                            <td>1100</td>
+                            <td>1080</td>
+                            <td>$11,000</td>
+                            <td>550</td>
+                            <td>$5,500</td>
+                            <td>0.5</td>
+                            <td>1.9%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                        <tr>
+                            <td>SKU12354</td>
+                            <td>Producto J</td>
+                            <td>Categoría J</td>
+                            <td>Proveedor Q</td>
+                            <td>1200</td>
+                            <td>1180</td>
+                            <td>$12,000</td>
+                            <td>600</td>
+                            <td>$6,000</td>
+                            <td>0.5</td>
+                            <td>1.7%</td>
+                            <td><span class="eficiencia-alta">✔️</span></td>
+                            <td><button class="btn-train">Entrenar</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                <canvas id="smallChart7" class="chart_kpi"></canvas>
+
+            </div>
+
+            <div class="card card-8">
+                <p class="value_kpi">5%</p>
+                <canvas id="smallChart8" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Low Stock </h2>
+            </div>
+
+            <div class="card card-9">
+                <p class="value_kpi">76c9</p>
+                <canvas id="smallChart9" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Over Stock</h2>
+            </div>
+            <div class="card card-10"><!-- Div para tu gráfico -->
+                <p class="value_kpi">76c10</p>
+                <canvas id="smallChart10" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Low Stock</h2>
+            </div>
+            <div class="card card-11">
+                <p class="value_kpi">76c11</p>
+                <canvas id="smallChart8" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">Ventas Perdidas x Low Stock</h2>
+            </div>
+            <div class="card card-12">
+                <p class="value_kpi">76c12</p>
+                <canvas id="smallChart8" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">% Destrucciones por Over Stock</h2>
+            </div>
+            <div class="card card-13">
+                <p class="value_kpi">421</p>
+                <canvas id="smallChart8" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">Pedidos realizados</h2>
+            </div>
+            <div class="card card-14">
+                <p class="value_kpi">125</p>
+                <canvas id="smallChart8" class="chart_kpi"></canvas>
+                <h2 class="name_kpi">Items entrenadoss</h2>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+
+    <script src="../js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line', // Cambia a 'bar', 'pie', etc., según el tipo de gráfico que quieras
+                data: {
+                    //labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        //label: 'Ventas Mensuales',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 5,
+                        fill: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

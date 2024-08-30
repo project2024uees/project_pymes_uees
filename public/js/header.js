@@ -11,10 +11,26 @@ fetch('header.html')
 
         // Después de que el header se ha cargado e insertado en el DOM, ejecutar el script del menú
         cargarMenu();
+        // Verificar el estado de la sesión y modificar el enlace si es necesario
+        verificarSesion();
     })
     .catch(error => {
         console.error('Error al cargar el header:', error);
     });
+
+function verificarSesion() {
+    // Aquí simulo la verificación de la sesión, en un contexto real obtendrías esto del servidor
+    if (sessionStorage.getItem('authorized') === 'true') {
+        const loginLink = document.getElementById('loginlinkX');
+        if (loginLink) {
+            loginLink.textContent = 'Cerrar Sesión';
+            loginLink.href = '/';
+            loginLink.addEventListener('click', function () {
+                sessionStorage.setItem('authorized', 'false');
+            });
+        }
+    }
+}
 
 function cargarMenu() {
     const menu = document.getElementById('menu');
@@ -24,7 +40,7 @@ function cargarMenu() {
         if (item.submenu && item.submenu.length > 0) {
             const dropdown = document.createElement('div');
             dropdown.classList.add('relative', 'inline-block', 'text-left');
-            
+
             dropdown.innerHTML = `
                 <button class="text-white hover:text-red-200">${item.name}</button>
                 <div class="dropdown-menu hidden absolute z-10 w-48 bg-white rounded-md shadow-lg">
@@ -36,10 +52,10 @@ function cargarMenu() {
                 </div>
             `;
 
-            dropdown.addEventListener('mouseenter', function() {
+            dropdown.addEventListener('mouseenter', function () {
                 dropdown.querySelector('.dropdown-menu').classList.remove('hidden');
             });
-            dropdown.addEventListener('mouseleave', function() {
+            dropdown.addEventListener('mouseleave', function () {
                 dropdown.querySelector('.dropdown-menu').classList.add('hidden');
             });
 

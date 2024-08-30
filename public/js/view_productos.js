@@ -12,19 +12,19 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const response = await fetch(apiEndpoint);
             const data = await response.json();
-            console.log('Datos cargados desde la API:', data); // Agrega este console.log para ver lo que está devolviendo la API
+            //console.log('Datos cargados desde la API:', data); // Agrega este console.log para ver lo que está devolviendo la API
 
             // Verifica si la API devuelve datos válidos
             if (Array.isArray(data)) {
                 products = data;
             } else {
-                console.error('Error: La API no devolvió un array como se esperaba.', data);
+                //console.error('Error: La API no devolvió un array como se esperaba.', data);
                 alert('Error cargando productos. La API no devolvió los datos correctamente.');
             }
 
             displayProducts(products);
         } catch (error) {
-            console.error('Error cargando productos:', error);
+            //console.error('Error cargando productos:', error);
             alert('Error cargando productos. Verifica la consola para más detalles.');
         }
     }

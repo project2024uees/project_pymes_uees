@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const Producto = require('../models/Productos');  // Importamos el modelo de productos
 const Usuario = require('../models/Usuarios'); 
+const Permiso = require('../models/Permisos'); 
 
 router.post('/newProduct', async (req, res) => {
     try {
@@ -80,6 +83,9 @@ router.post('/createUser', async (req, res) => {
         res.status(500).json({ error: 'Error creando usuario' });
     }
 });
+
+
+
 
 
 

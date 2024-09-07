@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kardex de Productos</title>
+    <link href="../css/output.css" rel="stylesheet">
+    <link href="../css/kardex.css" rel="stylesheet">
+</head>
+
+<body class="bg-white h-screen flex flex-col">
+    <!-- Header -->
+    <header id="header" class="bg-red-600 shadow-md"></header>
+
+    <!-- Contenido principal -->
+    <div id="content" class="flex-grow flex w-full h-full p-8">
+        <!-- Buscador de productos -->
+        <div class="w-full max-w-4xl mx-auto">
+            <h1 class="text-2xl font-bold text-gray-800 mb-6">Kardex de Productos</h1>
+            <form id="searchForm" class="mb-6 flex gap-4">
+                <input type="text" id="searchSKU" placeholder="Buscar por SKU..." class="w-full p-2 border rounded" />
+                <input type="text" id="searchName" placeholder="Buscar por Nombre de Producto..."
+                    class="w-full p-2 border rounded" />
+                <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded">Buscar</button>
+            </form>
+            <!-- Detalles del Producto -->
+            <div id="productDetails" class="mb-6 p-4 bg-gray-100 rounded shadow-lg">
+                <table class="min-w-full" style="border-spacing: 100px 0;">
+                    <tr class="bg-gray-100 border-b">
+                        <td class="text-lg font-bold">SKU:</td>
+                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold">Producto:</td>
+                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold">Proveedor:</td>
+                        <td class="text-lg font-bold">UOM:</td>
+                    </tr>
+                    <tr class="bg-gray-100 border-b">
+                        <td id="detailSKU" class="text-gray-700">N/A</td>
+                        <td class="text-lg font-bold">    </td>
+                        <td id="detailProduct" class="text-gray-700">N/A</td>
+                        <td class="text-lg font-bold">    </td>
+                        <td id="supplier" class="text-gray-700">N/A</td>
+                        <td id="uom" class="text-gray-700">N/A</td>
+                    </tr>
+                </table>
+            </div>
+
+
+
+
+
+            <!-- Tabla de kardex -->
+            <div id="tableContainer" class="overflow-y-auto max-h-96">
+                <table class="min-w-full bg-white border border-gray-300" style="border-spacing: 100px 0;">
+                    <thead>
+                        <tr class="bg-gray-100 border-b">
+                            <th class="p-3 text-left">Fecha</th>
+                            <th class="p-3 text-left">Tipo</th>
+                            <th class="p-3 text-left">Almacén</th>
+                            <th class="p-3 text-left">Documento</th>
+                            <th class="p-3 text-left">Debe</th>
+                            <th class="p-3 text-left">Haber</th>
+                            <th class="p-3 text-left">Stock QTY</th>
+                            <th class="p-3 text-left">Stock USD</th>
+                            <th class="p-3 text-left">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kardexTable" class="divide-y divide-gray-200">
+                        <!-- Las filas del kardex se generarán dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- JavaScript para incluir los componentes -->
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => document.getElementById('footer').innerHTML = data);
+
+
+
+    </script>
+
+    <!-- JavaScript -->
+    <script src="../js/header.js"></script>
+    <script src="../js/kardex.js"></script>
+</body>
+
+</html>

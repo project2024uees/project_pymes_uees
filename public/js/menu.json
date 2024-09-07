@@ -13,6 +13,10 @@
             {
                 "name": "Buscar Producto",
                 "url": "/pages/view_productos.html"
+            },
+            {
+                "name": "Kardex",
+                "url": "/pages/kardex.html"
             }
         ]
     },

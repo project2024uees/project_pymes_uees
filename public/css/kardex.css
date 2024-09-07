@@ -1,0 +1,7 @@
+/* Contenedor de la tabla con altura máxima fija */
+#tableContainer {
+    max-height: 400px; /* Ajusta la altura según tus necesidades */
+    overflow-y: auto;  /* Agregar scroll vertical */
+    border: 1px solid #e2e8f0; /* Borde opcional */
+    margin-top: 1rem;  /* Espacio entre la tabla y los elementos superiores */
+}

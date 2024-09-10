@@ -2,6 +2,7 @@ document.getElementById('searchForm').addEventListener('submit', async function 
     event.preventDefault();
     const sku = document.getElementById('searchSKU').value;
     const name = document.getElementById('searchName').value;
+    const nrecords = document.getElementById('searchQuantity').value
 
     try {
         // Hacer la solicitud POST a la API con los parámetros de búsqueda
@@ -10,7 +11,7 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ sku, name })
+            body: JSON.stringify({ sku, name, nrecords })
         });
 
         if (!response.ok) {
@@ -25,13 +26,15 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             document.getElementById('detailProduct').textContent = kardexData[0].Product.productName;
             document.getElementById('supplier').textContent = kardexData[0].supplierOrClient;
             document.getElementById('uom').textContent = kardexData[0].unitOfMeasure;
-            //document.getElementById('productDetails').classList.remove('hidden'); // Mostrar la fila de detalles
+            document.getElementById('productDetails').classList.remove('hidden'); // Mostrar la fila de detalles
+            document.getElementById('tableContainer').classList.remove('hidden');
         } else {
             document.getElementById('detailSKU').textContent = 'N/A';
             document.getElementById('detailProduct').textContent = 'N/A';
             document.getElementById('supplier').textContent = 'N/A';
             document.getElementById('uom').textContent = 'N/A';
-            //document.getElementById('productDetails').classList.add('hidden'); // Ocultar si no hay datos
+            document.getElementById('productDetails').classList.add('hidden'); // Ocultar si no hay datos
+            document.getElementById('tableContainer').classList.remove('hidden');
         }
 
         const kardexTable = document.getElementById('kardexTable');
@@ -46,14 +49,16 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             const row = `
             <tr class="border-b">
                 <td class="p-3">${formattedDate}</td>
+                <td class="p-3">${entry.documentMaterial}</td>
                 <td class="p-3">${entry.type}</td>
                 <td class="p-3">${entry.warehouseOrigin.name}</td>
-                <td class="p-3">${entry.documentMaterial}</td>
                 
-                <td class="p-3">${entry.quantity_d}</td>
-                <td class="p-3">${entry.quantity_h}</td>
-                <td class="p-3">${entry.totalQTY}</td>
-                <td class="p-3">$${entry.totalCost.toFixed(2)}</td>
+                
+                <td class="p-3 text-right">${entry.quantity_d}</td>
+                <td class="p-3 text-right">${entry.quantity_h}</td>
+                <td class="p-3 text-right">${entry.totalQTY}</td>
+                <td class="p-3 text-right">${entry.totalCost.toFixed(2)}</td>
+
                 <td class="p-3">${entry.movementStatus}</td>
             </tr>`;
             kardexTable.insertAdjacentHTML('beforeend', row);

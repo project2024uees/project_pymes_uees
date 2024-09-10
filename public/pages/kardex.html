@@ -17,29 +17,33 @@
     <div id="content" class="flex-grow flex w-full h-full p-8">
         <!-- Buscador de productos -->
         <div class="w-full max-w-4xl mx-auto">
-            <h1 class="text-2xl font-bold text-gray-800 mb-6">Kardex de Productos</h1>
-            <form id="searchForm" class="mb-6 flex gap-4">
-                <input type="text" id="searchSKU" placeholder="Buscar por SKU..." class="w-full p-2 border rounded" />
-                <input type="text" id="searchName" placeholder="Buscar por Nombre de Producto..."
-                    class="w-full p-2 border rounded" />
+
+            <form id="searchForm" class="mb-3 flex items-center gap-2">
+                <h1 class="text font-bold text-gray-800 mb-0 mr-2">Kardex</h1>
+                <input type="text" id="searchSKU" placeholder="Buscar por SKU..." class="w-[200px] py-2 px-4 border rounded" />
+                <input type="text" id="searchName" placeholder="Buscar por Nombre de Producto..."  class="w-[20%] py-2 px-4 border rounded" />
+
                 <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded">Buscar</button>
+
+                <!-- Selector de número -->
+                <input type="number" id="searchQuantity" value="20" min="0" step="5" class="w-[100px] py-2 px-4 border rounded" />
             </form>
             <!-- Detalles del Producto -->
-            <div id="productDetails" class="mb-6 p-4 bg-gray-100 rounded shadow-lg">
+            <div id="productDetails" class="mb-6 p-4 bg-gray-100 rounded shadow-lg hidden">
                 <table class="min-w-full" style="border-spacing: 100px 0;">
                     <tr class="bg-gray-100 border-b">
                         <td class="text-lg font-bold">SKU:</td>
-                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold"> </td>
                         <td class="text-lg font-bold">Producto:</td>
-                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold"> </td>
                         <td class="text-lg font-bold">Proveedor:</td>
                         <td class="text-lg font-bold">UOM:</td>
                     </tr>
                     <tr class="bg-gray-100 border-b">
                         <td id="detailSKU" class="text-gray-700">N/A</td>
-                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold"> </td>
                         <td id="detailProduct" class="text-gray-700">N/A</td>
-                        <td class="text-lg font-bold">    </td>
+                        <td class="text-lg font-bold"> </td>
                         <td id="supplier" class="text-gray-700">N/A</td>
                         <td id="uom" class="text-gray-700">N/A</td>
                     </tr>
@@ -47,22 +51,21 @@
             </div>
 
 
-
-
-
             <!-- Tabla de kardex -->
-            <div id="tableContainer" class="overflow-y-auto max-h-96">
+            <div id="tableContainer" class="overflow-y-auto max-h-96 hidden">
                 <table class="min-w-full bg-white border border-gray-300" style="border-spacing: 100px 0;">
                     <thead>
                         <tr class="bg-gray-100 border-b">
                             <th class="p-3 text-left">Fecha</th>
+                            <th class="p-3 text-left">Documento</th>
                             <th class="p-3 text-left">Tipo</th>
                             <th class="p-3 text-left">Almacén</th>
-                            <th class="p-3 text-left">Documento</th>
-                            <th class="p-3 text-left">Debe</th>
-                            <th class="p-3 text-left">Haber</th>
-                            <th class="p-3 text-left">Stock QTY</th>
-                            <th class="p-3 text-left">Stock USD</th>
+
+                            <th class="p-3 text-right">Debe</th>
+                            <th class="p-3 text-right">Haber</th>
+                            <th class="p-3 text-right">Stock QTY</th>
+                            <th class="p-3 text-right">Stock USD</th>
+                            
                             <th class="p-3 text-left">Estado</th>
                         </tr>
                     </thead>

@@ -61,10 +61,10 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: [],
             datasets: [{
                 data: [95, 5],
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', '#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
                 hoverBackgroundColor: ['#36a2eb', '#e0e0e0'],
                 borderColor: 'rgba(255, 99, 132, 10)',
-                borderWidth: 1,
+                borderWidth: 1, 
                 barPercentage: 3.0, // Barra más ancha
                 categoryPercentage: 1.0 // Reducir el espacio entre categorías
             }]
@@ -94,10 +94,10 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: [],
             datasets: [{
                 data: [95, 5],
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', '#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
                 hoverBackgroundColor: ['#36a2eb', '#e0e0e0'],
                 borderColor: 'rgba(255, 99, 132, 10)',
-                borderWidth: 1,
+                borderWidth: 1, 
                 barPercentage: 3.0, // Barra más ancha
                 categoryPercentage: 1.0 // Reducir el espacio entre categorías
             }]
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Progreso', 'Faltante'],
             datasets: [{
                 data: [10, 90], // 75% de progreso
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', '#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
                 hoverBackgroundColor: ['#36a2eb', '#e0e0e0'],
                 borderColor: 'rgba(255, 99, 132, 10)'
             }]
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Progreso', 'Faltante'],
             datasets: [{
                 data: [5, 95], // 75% de progreso
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', '#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
                 hoverBackgroundColor: ['#36a2eb', , '#e0e0e0'],
                 borderColor: 'rgba(255, 99, 132, 10)'
             }]
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
             datasets: [{
-                data: [8, 9, 5, 3, 2.8, 2.5, 2.1],
+                data: [8,9,5,3,2.8,2.5,2.1],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labels: ['Progreso', 'Faltante'],
             datasets: [{
                 data: [7, 93], // 75% de progreso
-                backgroundColor: ['rgba(255, 99, 132, 0.2)', '#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
+                backgroundColor: ['rgba(255, 99, 132, 0.2)','#e0e0e0'], // ['#36a2eb', '#e0e0e0'], // Colores para el progreso y el faltante
                 hoverBackgroundColor: ['#36a2eb', , '#e0e0e0'],
                 borderColor: 'rgba(255, 99, 132, 10)'
             }]
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
             datasets: [{
-                data: [25000, 23245, 20100, 18000, 15600, 12400, 12215],
+                data: [25000, 23245,20100,18000,15600,12400,12215],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
             datasets: [{
-                data: [800, 780, 541, 231, 600, 100, 421],
+                data: [800,780,541,231,600,100,421],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function () {
         data: {
             labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul'],
             datasets: [{
-                data: [400, 10, 7, 10, 5, 1, 1, 2],
+                data: [400,10,7,10,5,1,1,2],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
@@ -363,66 +363,4 @@ document.addEventListener('DOMContentLoaded', function () {
             row.cells[11].innerHTML = '<span class="eficiencia-baja">❌</span>';
         }
     });
-});
-
-
-document.addEventListener('DOMContentLoaded', async function () {
-    try {
-        // Hacer la solicitud al API para obtener los entrenamientos
-        const response = await fetch('/api/listTrainings');
-
-        // Verificar si la respuesta es exitosa
-        if (!response.ok) {
-            throw new Error('Error en la respuesta del servidor');
-        }
-
-        // Convertir la respuesta a JSON
-        const trainings = await response.json();
-
-        // Limpiar la tabla antes de agregar los datos
-        const trainingTable = document.getElementById('trainingTable');
-        trainingTable.innerHTML = ''; // Limpiar contenido previo
-
-        // Iterar sobre los datos obtenidos y generar las filas
-        trainings.forEach(async (training) => {
-            try {
-                // Hacer la solicitud al API para obtener el nombre del producto
-                const productResponse = await fetch(`/api/getProductName?sku=${training.productSKU}`);
-
-                // Verificar si la respuesta es exitosa
-                if (!productResponse.ok) {
-                    throw new Error('Error en la respuesta del servidor');
-                }
-
-                // Convertir la respuesta a JSON
-                const productData = await productResponse.json();
-
-                // Crear la fila para la tabla con los datos obtenidos
-                const row = `
-                <tr>
-                    <td class="p-3 text-left">${new Date(training.fecha_quiebre).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }) || 'N/A'}</td>
-                    <td class="p-3 text-left">${training.productSKU}</td>
-                    <td class="p-3 text-left">${productData.productName || 'N/A'}</td>
-                    <td class="p-3 text-left">${training.mae.toFixed(4) || 'N/A'}</td>
-                    <td class="p-3 text-left">${training.rmse.toFixed(4) || 'N/A'}</td>
-                    <td class="p-3 text-left">${training.rs.toFixed(4) || 'N/A'}</td>
-                    <td class="p-3 text-left">${training.Duration?.duration.toFixed(4) || 'N/A'}</td>
-                    
-                    <td class="p-3 text-left">${training.prediccion.toFixed(4) || 'N/A'}</td>
-
-                    <td><span class="eficiencia-media">⚠️</span></td>
-                    <td><button class="btn-train">Entrenar</button></td>
-                </tr>
-                `;
-
-                // Insertar la fila generada en el tbody
-                trainingTable.insertAdjacentHTML('beforeend', row);
-            } catch (error) {
-                console.error('Error al obtener el nombre del producto:', error);
-            }
-        });
-    } catch (error) {
-        console.error('Error al obtener los datos del entrenamiento:', error);
-        alert('Hubo un error al cargar los datos del entrenamiento. Por favor, intente de nuevo.');
-    }
 });

@@ -7,6 +7,7 @@ const Usuario = require('../models/Usuarios');
 const Permiso = require('../models/Permisos');
 //const Movimientos = require('../models/MovimientosInventario');
 const Movimientos = require('../models/Movimientos');
+const Trainings = require('../models/Trainings');
 
 router.post('/newProduct', async (req, res) => {
     try {
@@ -89,14 +90,17 @@ router.post('/createUser', async (req, res) => {
 
 // Ruta para obtener el kardex filtrado
 router.post('/kardex', async (req, res) => {
-    const { sku, name } = req.body;
+    const { sku, name, nrecords } = req.body;
 
     try {
         const query = {};
-        if (sku) query['Product.productSKU'] = { $regex: sku, $options: 'i' }; // Búsqueda por SKU
-        //if (name) query['Product.productName'] = { $regex: name, $options: 'i' }; // Búsqueda por nombre
+        if (sku) {
+            query['Product.productSKU'] = { $regex: sku, $options: 'i' }; // Búsqueda por SKU
+        } else if (name) {
+            query['Product.productName'] = { $regex: name, $options: 'i' };
+        }
         console.log(query)
-        const movimientos = await Movimientos.find(query).sort({ date: -1 }); // Ordenar por fecha
+        const movimientos = await Movimientos.find(query).sort({ date: -1 }).limit(nrecords);
 
         res.json(movimientos);
     } catch (error) {
@@ -105,41 +109,145 @@ router.post('/kardex', async (req, res) => {
 });
 
 
-/*
-router.post('/kardex2', async (req, res) => {
+
+
+
+// Ruta para obtener los 20 SKU con mayor totalQTY del movimiento más reciente
+router.post('/productosMovimientosTop20', async (req, res) => {
     try {
-        // Consulta para obtener los primeros 10 documentos con solo los campos especificados
-        const movimientos = await Movimientos.find()
-            .limit(10)
-            //.sort({ date: -1 }) // Ordenar por fecha descendente
-            //.select('movementId') // Seleccionar solo estos campos
-            .lean(); // Devolver objetos JSON puros
-        console.log(movimientos)
-        // Verificar si hay movimientos encontrados
-        if (!movimientos || movimientos.length === 0) {
-            console.log('No se encontraron movimientos');
-            return res.status(404).json({ message: 'No se encontraron movimientos' });
+        // Paso 1: Obtener todos los productos
+        const productos = await Producto.find({}, {
+            "category.name": 1, // Solo traemos los campos específicos que nos interesan
+            sku: 1,
+            name: 1,
+            proveedor: 1
+        });
+
+        // Paso 2: Crear una lista para almacenar los productos junto a su movimiento más reciente
+        const productosConMovimientos = [];
+
+        for (const producto of productos) {
+            // Paso 3: Encontrar el movimiento más reciente para el SKU del producto actual
+            const movimientoMasReciente = await Movimientos
+                .findOne({ 'Product.productSKU': producto.sku }, {
+                    date: 1,
+                    totalQTY: 1,
+                    totalCost: 1
+                })
+                .sort({ date: -1 });  // Ordenar por fecha en orden descendente y tomar el más reciente
+
+            // Paso 4: Combinar el producto con el movimiento más reciente
+            if (movimientoMasReciente) {
+                productosConMovimientos.push({
+                    producto: {
+                        category: producto.category.name,
+                        sku: producto.sku,
+                        name: producto.name,
+                        proveedor: producto.proveedor
+                    },
+                    movimiento: {
+                        date: movimientoMasReciente.date,
+                        totalQTY: movimientoMasReciente.totalQTY,
+                        totalCost: movimientoMasReciente.totalCost
+                    }
+                });
+            }
         }
 
-        console.log(movimientos);
-        res.json(movimientos);
+        // Paso 5: Ordenar los productos por totalQTY de forma descendente
+        productosConMovimientos.sort((a, b) => b.movimiento.totalQTY - a.movimiento.totalQTY);
+
+        // Paso 6: Limitar el resultado a los 20 primeros SKU con mayor totalQTY
+        const top20Productos = productosConMovimientos.slice(0, 20);
+
+        // Paso 7: Devolver la lista combinada de productos con movimientos (solo top 20)
+        res.json(top20Productos);
+
     } catch (error) {
-        console.error('Error al obtener el kardex:', error);
-        res.status(500).json({ error: 'Error al obtener el kardex' });
+        console.error('Error al obtener productos y movimientos:', error);
+        res.status(500).json({ error: 'Error al obtener productos y movimientos' });
+    }
+});
+
+
+// Lista todos los productos con los campos necesarios
+/*
+router.get('/listTrainings', async (req, res) => {
+    try {
+        // Seleccionar solo los campos necesarios
+        const trainings = await Trainings.find({},' date productSKU mae rmse rs Duration.duration fecha_quiebre prediction').exec();
+        res.json(trainings);
+    } catch (error) {
+        console.error('Error listando entrenamientos:', error);
+        res.status(500).json({ error: 'Error listando entrenamientos' });
     }
 });*/
 
 
-module.exports = router;
+router.get('/listTrainings', async (req, res) => {
+    try {
+        // Pipeline de agregación para obtener el entrenamiento más reciente por productSKU
+        const pipeline = [
+            {
+                $sort: { "fecha_quiebre": 1 }  // Ordenar por fecha descendente
+            },
+            {
+                $group: {
+                    _id: "$productSKU",  // Agrupar por SKU
+                    mostRecentTraining: { $first: "$$ROOT" }  // Obtener el documento más reciente
+                }
+            },
+            {
+                $replaceRoot: { newRoot: "$mostRecentTraining" }  // Reemplazar con el documento más reciente
+            },
+            {
+                $project: {
+                    date: 1,
+                    productSKU: 1,
+                    mae: 1,
+                    rmse: 1,
+                    rs: 1,
+                    "Duration.duration": 1,
+                    fecha_quiebre: 1,
+                    prediccion: 1,
+                    incertidumbre: 1
+                }
+            }
+
+        ];
+
+        const trainings = await Trainings.aggregate(pipeline).exec();
+
+        res.json(trainings);
+    } catch (error) {
+        console.error('Error listando entrenamientos:', error);
+        res.status(500).json({ error: 'Error listando entrenamientos' });
+    }
+});
 
 
+router.get('/getProductName', async (req, res) => {
+    const { sku } = req.query; // Obtenemos el SKU de los parámetros de consulta
 
+    if (!sku) {
+        return res.status(400).json({ error: 'Debes proporcionar un productSKU' });
+    }
 
+    try {
+        // Buscar en la base de datos el producto que coincida con el SKU proporcionado
+        const producto = await Producto.findOne({ 'sku': sku });
 
+        if (!producto) {
+            return res.status(404).json({ error: 'Producto no encontrado' });
+        }
 
-
-
-
+        // Devolver el nombre del producto
+        res.json({ productName: producto.name });
+    } catch (error) {
+        console.error('Error al buscar el producto:', error);
+        res.status(500).json({ error: 'Error al buscar el producto' });
+    }
+});
 
 
 

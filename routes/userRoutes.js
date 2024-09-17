@@ -8,6 +8,7 @@ const Permiso = require('../models/Permisos');
 //const Movimientos = require('../models/MovimientosInventario');
 const Movimientos = require('../models/Movimientos');
 const Trainings = require('../models/Trainings');
+const ColaTraining = require('../models/ColaTrainings');
 
 router.post('/newProduct', async (req, res) => {
     try {
@@ -248,6 +249,73 @@ router.get('/getProductName', async (req, res) => {
         res.status(500).json({ error: 'Error al buscar el producto' });
     }
 });
+
+
+// Ruta para recibir los entrenamientos
+router.post('/entrenar', async (req, res) => {
+    const { sku } = req.body;
+
+    if (!sku) {
+        return res.status(400).send({ error: 'El SKU es requerido' });
+    }
+
+    try {
+        // Crear un nuevo documento en la colección "colaTraining"
+        const newTraining = new ColaTraining({
+            sku: sku,
+            date: new Date() // Fecha y hora actual
+        });
+
+        // Guardar en la base de datos
+        await newTraining.save();
+
+        res.status(201).send({ message: `Entrenamiento registrado para SKU: ${sku}` });
+    } catch (error) {
+        console.error('Error al registrar el entrenamiento:', error);
+        res.status(500).send({ error: 'Hubo un error al registrar el entrenamiento' });
+    }
+});
+
+
+// Ruta para obtener el promedio de la diferencia entre totalQTY y predictedQTY para un productSKU
+router.get('/diferenciapromedio/:sku', async (req, res) => {
+    const productSKU = req.params.sku;
+    try {
+        const pipeline = [
+            {
+                $match: { "Product.productSKU": productSKU } // Filtrar por SKU
+            },
+            {
+                $project: {
+                    productSKU: "$Product.productSKU",
+                    diferencia: { $subtract: ["$totalQTY", "$predictedQTY"] }
+                }
+            },
+            {
+                $group: {
+                    _id: "$productSKU",  // Agrupar por SKU
+                    promedioDiferencia: { $avg: "$diferencia" }  // Calcular el promedio de la diferencia
+                }
+            }
+        ];
+
+        const resultado = await Movimientos.aggregate(pipeline);
+
+        // Si no hay resultados, devolver un error 404
+        if (!resultado || resultado.length === 0) {
+            return res.status(404).json({ error: 'No se encontraron datos para ese SKU' });
+        }
+
+        // Responder con el resultado
+        res.json(resultado[0]); // Enviar el primer (y único) resultado
+    } catch (error) {
+        console.error('Error al obtener el promedio de la diferencia:', error);
+        res.status(500).json({ error: 'Error al obtener el promedio de la diferencia' });
+    }
+});
+
+
+
 
 
 

@@ -411,11 +411,12 @@ document.addEventListener('DOMContentLoaded', async function () {
                     <td class="p-3 text-left">${training.prediccion.toFixed(4) || 'N/A'}</td>
 
                     <td><span class="eficiencia-media">⚠️</span></td>
-                    <td><button class="btn-train">Entrenar</button></td>
+                    
+                    <td><button class="btn-train" data-sku="${training.productSKU}">Entrenar</button></td>
                 </tr>
                 `;
 
-                // Insertar la fila generada en el tbody
+                // Insertar la fila generada en el tbody     -----    <td><button class="btn-train">Entrenar</button></td>
                 trainingTable.insertAdjacentHTML('beforeend', row);
             } catch (error) {
                 console.error('Error al obtener el nombre del producto:', error);
@@ -425,4 +426,57 @@ document.addEventListener('DOMContentLoaded', async function () {
         console.error('Error al obtener los datos del entrenamiento:', error);
         alert('Hubo un error al cargar los datos del entrenamiento. Por favor, intente de nuevo.');
     }
+});
+
+// Delegación de eventos para los botones "Entrenar"
+document.getElementById('trainingTable').addEventListener('click', async function (event) {
+    // Verificar si el elemento clicado es un botón con la clase 'btn-train'
+    if (event.target.classList.contains('btn-train')) {
+        const sku = event.target.getAttribute('data-sku');
+        console.log('se puede entrar');
+        try {
+            const response = await fetch(`/api/entrenar`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ sku }), // Enviar el SKU en el cuerpo de la petición
+            });
+
+            if (response.ok) {
+                alert(`Entrenamiento iniciado para el producto con SKU: ${sku}`);
+            } else {
+                alert(`Error iniciando el entrenamiento para el SKU: ${sku}`);
+            }
+        } catch (error) {
+            console.error('Error en la llamada a la API de entrenar:', error);
+            alert('Hubo un error al intentar iniciar el entrenamiento.');
+        }
+    }
+});
+
+// Agregar manejador de eventos para los botones de entrenar
+document.querySelectorAll('.btn-train').forEach(button => {
+    button.addEventListener('click', async (event) => {
+        const sku = event.target.getAttribute('data-sku');
+        console.log('se puede entrar')
+        try {
+            const response = await fetch(`/api/entrenar`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ sku }), // Enviar el SKU en el cuerpo de la petición
+            });
+
+            if (response.ok) {
+                alert(`Entrenamiento iniciado para el producto con SKU: ${sku}`);
+            } else {
+                alert(`Error iniciando el entrenamiento para el SKU: ${sku}`);
+            }
+        } catch (error) {
+            console.error('Error en la llamada a la API de entrenar:', error);
+            alert('Hubo un error al intentar iniciar el entrenamiento.');
+        }
+    });
 });

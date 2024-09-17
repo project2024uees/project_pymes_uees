@@ -31,21 +31,19 @@
             <!-- Detalles del Producto -->
             <div id="productDetails" class="mb-6 p-4 bg-gray-100 rounded shadow-lg hidden">
                 <table class="min-w-full" style="border-spacing: 100px 0;">
-                    <tr class="bg-gray-100 border-b">
-                        <td class="text-lg font-bold">SKU:</td>
-                        <td class="text-lg font-bold"> </td>
-                        <td class="text-lg font-bold">Producto:</td>
-                        <td class="text-lg font-bold"> </td>
-                        <td class="text-lg font-bold">Proveedor:</td>
-                        <td class="text-lg font-bold">UOM:</td>
+                    <tr class="bg-red-100 border-b">
+                        <td class="text-lg font-bold" style="width: auto; padding: 0 20px 0 0;">SKU:</td>
+                        <td class="text-lg font-bold"   style="width: auto + 10px;">Producto:</td>
+                        <td class="text-lg font-bold"   style="width: auto;">Proveedor:</td>
+                        <td class="text-lg font-bold"   style="width: auto;">UOM:</td>
+                        <td class="text-lg font-bold"   style="width: auto;">Exactitud:</td>
                     </tr>
                     <tr class="bg-gray-100 border-b">
                         <td id="detailSKU" class="text-gray-700">N/A</td>
-                        <td class="text-lg font-bold"> </td>
                         <td id="detailProduct" class="text-gray-700">N/A</td>
-                        <td class="text-lg font-bold"> </td>
                         <td id="supplier" class="text-gray-700">N/A</td>
                         <td id="uom" class="text-gray-700">N/A</td>
+                        <td id="diferencia" class="text-gray-700">N/A</td>
                     </tr>
                 </table>
             </div>
@@ -56,14 +54,16 @@
                 <table class="min-w-full bg-white border border-gray-300" style="border-spacing: 100px 0;">
                     <thead>
                         <tr class="bg-gray-100 border-b">
-                            <th class="p-3 text-left">Fecha</th>
-                            <th class="p-3 text-left">Documento</th>
-                            <th class="p-3 text-left">Tipo</th>
-                            <th class="p-3 text-left">Almacén</th>
+                            <th class="p-3 text-left"  style="width: 100px;">Contador</th>
+                            <th class="p-3 text-left"  style="width: 120px;">Fecha</th>
+                            <th class="p-3 text-left"  style="width: 150px;">Documento</th>
+                            <th class="p-3 text-left"  style="width: 90px;">Tipo</th>
+                            <th class="p-3 text-left"  style="width: 150px;">Almacén</th>
 
-                            <th class="p-3 text-right">Debe</th>
-                            <th class="p-3 text-right">Haber</th>
+                            <th class="p-3 text-right">Entradas</th>
+                            <th class="p-3 text-right">Salidas</th>
                             <th class="p-3 text-right">Stock QTY</th>
+                            <th class="p-3 text-right">Predicción Stock</th>
                             <th class="p-3 text-right">Stock USD</th>
                             
                             <th class="p-3 text-left">Estado</th>

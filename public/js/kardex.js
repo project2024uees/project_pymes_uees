@@ -1,3 +1,5 @@
+
+
 document.getElementById('searchForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const sku = document.getElementById('searchSKU').value;
@@ -20,12 +22,14 @@ document.getElementById('searchForm').addEventListener('submit', async function 
 
         const kardexData = await response.json();
 
+        
         // Mostrar detalles del producto seleccionado
         if (kardexData.length > 0) {
             document.getElementById('detailSKU').textContent = kardexData[0].Product.productSKU;
             document.getElementById('detailProduct').textContent = kardexData[0].Product.productName;
             document.getElementById('supplier').textContent = kardexData[0].supplierOrClient;
             document.getElementById('uom').textContent = kardexData[0].unitOfMeasure;
+            //document.getElementById('diferencia').textContent = dato["promedioDiferencia"];
             document.getElementById('productDetails').classList.remove('hidden'); // Mostrar la fila de detalles
             document.getElementById('tableContainer').classList.remove('hidden');
         } else {
@@ -48,16 +52,18 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             });
             const row = `
             <tr class="border-b">
+                <td class="p-3 text-right">${entry.contador}</td>    
                 <td class="p-3">${formattedDate}</td>
                 <td class="p-3">${entry.documentMaterial}</td>
                 <td class="p-3">${entry.type}</td>
                 <td class="p-3">${entry.warehouseOrigin.name}</td>
-                
-                
-                <td class="p-3 text-right">${entry.quantity_d}</td>
-                <td class="p-3 text-right">${entry.quantity_h}</td>
-                <td class="p-3 text-right">${entry.totalQTY}</td>
-                <td class="p-3 text-right">${entry.totalCost.toFixed(2)}</td>
+                    
+                    
+                <td class="p-3" style="text-align: right;">${entry.quantity_d}</td>
+                <td class="p-3" style="text-align: right;">${entry.quantity_h}</td>
+                <td class="p-3" style="text-align: right;">${entry.totalQTY}</td>
+                <td class="p-3" style="text-align: right;">${entry.predictedQTY.toFixed(2)}</td>
+                <td class="p-3" style="text-align: right;">${entry.totalCost.toFixed(2)}</td>
 
                 <td class="p-3">${entry.movementStatus}</td>
             </tr>`;
@@ -65,6 +71,6 @@ document.getElementById('searchForm').addEventListener('submit', async function 
         });
     } catch (error) {
         console.error('Error al obtener datos del kardex:', error);
-        alert('Hubo un error al cargar los datos del kardex. Por favor, intente de nuevo.');
+        //alert('Hubo un error al cargar los datos del kardex. Por favor, intente de nuevo.');
     }
 });

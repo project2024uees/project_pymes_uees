@@ -1,10 +1,8 @@
-
-
 document.getElementById('searchForm').addEventListener('submit', async function (event) {
     event.preventDefault();
     const sku = document.getElementById('searchSKU').value;
     const name = document.getElementById('searchName').value;
-    const nrecords = document.getElementById('searchQuantity').value
+    const nrecords = document.getElementById('searchQuantity').value;
 
     try {
         // Hacer la solicitud POST a la API con los parámetros de búsqueda
@@ -22,14 +20,20 @@ document.getElementById('searchForm').addEventListener('submit', async function 
 
         const kardexData = await response.json();
 
-        
+        // Llamada a la API usando fetch con el método GET para obtener la diferencia promedio
+        const response1 = await fetch(`/api/diferenciapromedio/${sku}`);
+        if (!response1.ok) {
+            throw new Error('Error al obtener la diferencia promedio');
+        }
+        const data = await response1.json(); // Obtener el JSON de la respuesta
+
         // Mostrar detalles del producto seleccionado
         if (kardexData.length > 0) {
             document.getElementById('detailSKU').textContent = kardexData[0].Product.productSKU;
             document.getElementById('detailProduct').textContent = kardexData[0].Product.productName;
             document.getElementById('supplier').textContent = kardexData[0].supplierOrClient;
             document.getElementById('uom').textContent = kardexData[0].unitOfMeasure;
-            //document.getElementById('diferencia').textContent = dato["promedioDiferencia"];
+            document.getElementById('diferencia').textContent = data["promedioDiferencia"].toFixed(4); // Usar la diferencia promedio aquí
             document.getElementById('productDetails').classList.remove('hidden'); // Mostrar la fila de detalles
             document.getElementById('tableContainer').classList.remove('hidden');
         } else {
@@ -41,8 +45,11 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             document.getElementById('tableContainer').classList.remove('hidden');
         }
 
+        // Renderizar la tabla
         const kardexTable = document.getElementById('kardexTable');
         kardexTable.innerHTML = ''; // Limpiar la tabla
+
+        // Llenar la tabla con datos del kardex
         kardexData.forEach(entry => {
             // Convertir la fecha al formato deseado (día/mes/año)
             const formattedDate = new Date(entry.date).toLocaleDateString('es-ES', {
@@ -50,6 +57,7 @@ document.getElementById('searchForm').addEventListener('submit', async function 
                 month: '2-digit',
                 year: 'numeric'
             });
+
             const row = `
             <tr class="border-b">
                 <td class="p-3 text-right">${entry.contador}</td>    
@@ -69,8 +77,10 @@ document.getElementById('searchForm').addEventListener('submit', async function 
             </tr>`;
             kardexTable.insertAdjacentHTML('beforeend', row);
         });
+
     } catch (error) {
         console.error('Error al obtener datos del kardex:', error);
-        //alert('Hubo un error al cargar los datos del kardex. Por favor, intente de nuevo.');
     }
 });
+
+
